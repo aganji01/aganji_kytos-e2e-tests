@@ -51,8 +51,9 @@ MALFORMED_DPIDS = {
     "leading_space": " " + VALID_DPID,
     "negative": "-1",
     "hex_prefix": "0x0000000000000001",
-    "unicode_digits": "٠٠:٠٠:٠٠:٠٠:٠٠:٠٠:٠٠:٠١",
-    "rtl_override": "‮" + VALID_DPID,
+    # Arabic-Indic digits, written as escapes
+    "unicode_digits": ":".join(["\u0660\u0660"] * 7 + ["\u0660\u0661"]),
+    "rtl_override": "\u202e" + VALID_DPID,  # right-to-left override
     "nul_byte": VALID_DPID + "\x00",
     "newline": VALID_DPID + "\nX-Injected: 1",
     "traversal": "../../etc/passwd",
