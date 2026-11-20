@@ -34,11 +34,6 @@ if ! grep -q aiokafka $NAPPS_PATH/etc/kytos/logging.ini; then
 	echo -e "\n\n[logger_aiokafka]\nlevel: INFO\nhandlers:\nqualname: aiokafka" >> $NAPPS_PATH/etc/kytos/logging.ini
 fi
 
-# schemathesis is used by the security fuzz tests (test_e2e_107, 151 and 181).
-# Pinned to 3.x because schemathesis 4.x requires pytest>=8.4. If the install
-# fails (for example no network), those tests are skipped instead of aborting.
-python3 -m pip install --quiet "schemathesis==3.39.16" || echo "WARNING: schemathesis not installed, fuzz tests will be skipped"
-
 test -z "$TESTS" && TESTS=tests/
 test -z "$RERUNS" && RERUNS=2
 
